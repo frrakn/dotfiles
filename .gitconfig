@@ -1,0 +1,57 @@
+[user]
+	name = Cheng (Frank) Chen
+	email = cheng.frank.chen@gmail.com
+
+[alias]
+	st = status
+	ci = commit
+	br = branch -v
+	clpatch = !bash -lc 'clpatch $1' -
+	co = checkout
+	cp = cherry-pick
+	df = diff
+	ds = diff --staged
+	lg = log -p
+	cp = cherry-pick
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --date=local
+	ls = ls-files
+	unstage = reset HEAD
+	out = !git log origin/master..$(git rev-parse --abbrev-ref HEAD)
+	in = !git fetch && git log $(git rev-parse --abbrev-ref HEAD)..origin/master
+	upload = !python ~/alpha/tools/hg/upload.py --send_mail --email fchen@yext.com --cc fido@yext.com
+
+	# Show files ignored by git:
+	ign = ls-files -o -i --exclude-standard
+
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+
+[core]
+	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	editor = /usr/bin/vim
+
+[push]
+	default = simple
+
+[difftool "Kaleidoscope"]
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[diff]
+    tool = Kaleidoscope
+
+[difftool]
+    prompt = false
+
+[mergetool "Kaleidoscope"]
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustExitCode = true
+
+[mergetool]
+    prompt = false
+
+[merge]
+    tool = Kaleidoscope
