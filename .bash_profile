@@ -1,4 +1,10 @@
 # custom
+
+export PATH=/Users/frrakn/.nvm/versions/io.js/v3.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/usr/local/go/bin
+
+export GOPATH=/Users/frrakn/Documents/Programming/treebeer
+export GOROOT=/usr/local/go
+
 alias ls='ls -a'
 PS1='\[\e[1;33m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
 alias refresh_bash='source ~/.bash_profile'

@@ -18,6 +18,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'fatih/vim-go'
 Plugin 'scrooloose/syntastic'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'pangloss/vim-javascript'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,6 +53,7 @@ set ruler
 set title
 set list
 set listchars=tab:▸\ ,trail:X
+set backspace=indent,eol,start
 au BufEnter *.html set indentexpr=|set cindent
 
 " So Vundle and Syntastic don't butt heads
