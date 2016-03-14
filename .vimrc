@@ -59,4 +59,14 @@ au BufEnter *.html set indentexpr=|set cindent
 " So Vundle and Syntastic don't butt heads
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+" Persistent undo
+set undodir=~/.vim/undodir
+set undofile
+set undolevels=1000 " maximum number of changes that can be undone
+set undoreload=10000 " maximum number lines to save for undo on a buffer reload
+
+" Moving swp files
+set backupdir=~/.vim/backup//
+set directory=~/.vim/temp//
 "------------------------------------------------------------------------------
