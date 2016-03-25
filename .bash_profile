@@ -4,10 +4,11 @@
 #
 ############################
 
-MACHINE_PROFILE=1
+MACHINE_PROFILE=2
 
 MACHINE_HOME=0
 MACHINE_WORK=1
+MACHINE_EC2=2
 
 
 
@@ -17,7 +18,10 @@ MACHINE_WORK=1
 #
 ############################
 
-alias ls='ls -a'
+alias ls='ls -a --color'
+LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
+export LS_COLORS
+
 PS1='\[\e[1;33m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
 alias refresh_bash='source ~/.bash_profile'
 alias mkdirp='mkdir -p'
@@ -143,4 +147,15 @@ if [ $MACHINE_PROFILE = $MACHINE_HOME ]; then
         ;;
     esac
   }
+fi
+
+############################
+#
+# EC2 DEFAULTS
+#
+############################
+
+
+if [ $MACHINE_PROFILE = $MACHINE_EC2 ]; then
+	export PATH=$PATH:/usr/local/go/bin
 fi
