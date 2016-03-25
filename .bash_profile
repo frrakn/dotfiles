@@ -105,12 +105,20 @@ fi
 #
 ############################
 
-
 if [ $MACHINE_PROFILE = $MACHINE_HOME ]; then
-  export PATH=/Users/frrakn/.nvm/versions/io.js/v3.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/usr/local/go/bin
+  HOME_PROGRAMMING="$HOME/Documents/Programming"
 
+  export PATH=/Users/frrakn/.nvm/versions/io.js/v3.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/usr/local/go/bin:/usr/local/sbin
   export GOPATH=/Users/frrakn/Documents/Programming/treebeer
   export GOROOT=/usr/local/go
+  export NVM_DIR="/Users/frrakn/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+  export TERM="xterm-256color"
+  export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
+  if [ -z ${DISPLAY} ]
+  then
+    export DISPLAY=:0.0
+  fi
 
   alias EC2_CONNECT="ssh -i ~/frraknpub.pem ec2-user@ec2-52-23-8-215.compute-1.amazonaws.com"
 
@@ -119,16 +127,20 @@ if [ $MACHINE_PROFILE = $MACHINE_HOME ]; then
   }
 
   function EC2_DOWNLOAD {
-  	scp -i ~/frraknpub.pem "ec2-user@ec2-52-23-8-215.compute-1.amazonaws.com:~/$1" .
+    scp -i ~/frraknpub.pem "ec2-user@ec2-52-23-8-215.compute-1.amazonaws.com:~/$1" .
   }
 
-  export NVM_DIR="/Users/frrakn/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-  export TERM="xterm-256color"
-
-  export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
-  if [ -z ${DISPLAY} ]
-  then
-    export DISPLAY=:0.0
-  fi
+  function qw {
+    case $1 in
+      'tb')
+        cd "$HOME_PROGRAMMING/treebeer"
+        ;;
+      'ml')
+        cd "$HOME_PROGRAMMING/machineLearning"
+        ;;
+      'dl')
+        cd "$HOME/Downloads"
+        ;;
+    esac
+  }
 fi
