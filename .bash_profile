@@ -4,7 +4,7 @@
 #
 ############################
 
-MACHINE_PROFILE=2
+MACHINE_PROFILE=0
 
 MACHINE_HOME=0
 MACHINE_WORK=1
@@ -18,7 +18,7 @@ MACHINE_EC2=2
 #
 ############################
 
-alias ls='ls -a --color'
+alias ls='ls -aG'
 LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
 export LS_COLORS
 
@@ -113,7 +113,7 @@ if [ $MACHINE_PROFILE = $MACHINE_HOME ]; then
   HOME_PROGRAMMING="$HOME/Documents/Programming"
 
   export PATH=/Users/frrakn/.nvm/versions/io.js/v3.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/usr/local/go/bin:/usr/local/sbin
-  export GOPATH=/Users/frrakn/Documents/Programming/treebeer
+  export GOPATH=/Users/frrakn/Documents/Programming/gocode
   export GOROOT=/usr/local/go
   export NVM_DIR="/Users/frrakn/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -137,13 +137,16 @@ if [ $MACHINE_PROFILE = $MACHINE_HOME ]; then
   function qw {
     case $1 in
       'tb')
-        cd "$HOME_PROGRAMMING/treebeer"
+        cd "$HOME_PROGRAMMING/gocode/src/github.com/frrakn/treebeer"
         ;;
       'ml')
         cd "$HOME_PROGRAMMING/machineLearning"
         ;;
       'dl')
         cd "$HOME/Downloads"
+        ;;
+      'gc')
+        cd "$HOME_PROGRAMMING/gocode"
         ;;
     esac
   }
