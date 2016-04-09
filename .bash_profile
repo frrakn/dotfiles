@@ -55,47 +55,11 @@ fi
 
 if [ $MACHINE_PROFILE = $MACHINE_WORK ]; then
   export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
-  export PATH=/usr/local/bin:$PATH
-  export ANT_OPTS='-Xmx2G'
-  alias srcclean='rm -rf $ALPHA/build; find $ALPHA/src/com/yext -name 'tmp' | xargs rm -rf'
-  alias icbm='python tools/icbm/build.py'
-  alias play='thirdparty/play/play'
-  function bplay() {
-    echo -e "\033];$1\007" && icbm :$1_dev && thirdparty/play/play test src/com/yext/$1 ${@:2}
-  }
-  function brun() {
-    echo -e "\033];$1\007" && icbm :$1 && YEXT_SITE=office JVM_ARGS='-Xmx3G' build/$1/$1 ${@:2}
-  }
-  function buildjs() {
-    for t in "$@"
-    do
-      bjst "${t}"
-    done
-
-    if [ $# = 0 ]; then
-      bjst
-    fi
-  }
-  function bjst() {
-    local p="src/com/yext"
-    if [ ! -z "$1" ]; then
-      p="${p}/${1}"
-    fi
-
-    for i in $(find "${p}" -name prod-config.js)
-    do
-      d=$(dirname $i)
-      echo "compiling ${d:13}..."
-      output=$($ALPHA/tools/bin/plovr.sh build $i 2>&1 > /dev/null)
-      echo "$output"
-    done
-  }
-
+  export PATH=/usr/local/bin:/usr/local/go/bin:/Users/fchen/alpha/gocode/bin:$PATH:/usr/local/sbin
   export ALPHA_HOME=/Users/fchen/alpha
   export ALPHA=/Users/fchen/alpha
   export GOROOT=/usr/local/go
-  export GOPATH=/Users/fchen/alpha/gocode
-  export PATH=/usr/local/go/bin:/Users/fchen/alpha/gocode/bin:$PATH:/usr/local/sbin
+  export GOPATH=/Users/fchen/alpha/gocode:/Users/fchen/revere
   source $ALPHA/tools/bin/bash_helpers.sh
 
   alias rgrep='grep -rn --color=auto -I --exclude-dir=.metadata --exclude-dir=build --exclude-dir=bin --exclude-dir=depcache --exclude-dir="apache" --exclude-dir=closure --exclude-dir=flume --exclude-dir="hadoop-0." --exclude-dir="jetty-distribution" --exclude-dir=classes --exclude-dir=".hg" --exclude="*.pyc"'
