@@ -4,7 +4,7 @@
 #
 ############################
 
-MACHINE_PROFILE=0
+MACHINE_PROFILE=1
 
 MACHINE_HOME=0
 MACHINE_WORK=1
@@ -59,7 +59,7 @@ if [ $MACHINE_PROFILE = $MACHINE_WORK ]; then
   export ALPHA_HOME=/Users/fchen/alpha
   export ALPHA=/Users/fchen/alpha
   export GOROOT=/usr/local/go
-  export GOPATH=/Users/fchen/alpha/gocode:/Users/fchen/revere
+  export GOPATH=/Users/fchen/alpha/gocode
   source $ALPHA/tools/bin/bash_helpers.sh
 
   alias rgrep='grep -rn --color=auto -I --exclude-dir=.metadata --exclude-dir=build --exclude-dir=bin --exclude-dir=depcache --exclude-dir="apache" --exclude-dir=closure --exclude-dir=flume --exclude-dir="hadoop-0." --exclude-dir="jetty-distribution" --exclude-dir=classes --exclude-dir=".hg" --exclude="*.pyc"'
