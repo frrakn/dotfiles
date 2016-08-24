@@ -54,17 +54,14 @@ fi
 ############################
 
 if [ $MACHINE_PROFILE = $MACHINE_WORK ]; then
-  export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
-  export PATH=/usr/local/bin:/usr/local/go/bin:/Users/fchen/alpha/gocode/bin:$PATH:/usr/local/sbin
-  export ALPHA_HOME=/Users/fchen/alpha
-  export ALPHA=/Users/fchen/alpha
+  export PATH=/usr/local/bin:/usr/local/go/bin:$PATH:/usr/local/sbin
   export GOROOT=/usr/local/go
-  export GOPATH=/Users/fchen/alpha/gocode
-  source $ALPHA/tools/bin/bash_helpers.sh
+  export IMAGES_ORIG=~/selfmade/images/originals
+  export IMAGES_MOD=~/selfmade/images/modified
 
   alias rgrep='grep -rn --color=auto -I --exclude-dir=.metadata --exclude-dir=build --exclude-dir=bin --exclude-dir=depcache --exclude-dir="apache" --exclude-dir=closure --exclude-dir=flume --exclude-dir="hadoop-0." --exclude-dir="jetty-distribution" --exclude-dir=classes --exclude-dir=".hg" --exclude="*.pyc"'
 
-  alias vim=/usr/local/Cellar/vim/7.4.922/bin/vim
+  alias vim=/usr/local/Cellar/vim/7.4.2235/bin/vim
 fi
 
 ############################
