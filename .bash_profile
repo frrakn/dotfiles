@@ -73,7 +73,7 @@ fi
 if [ $MACHINE_PROFILE = $MACHINE_HOME ]; then
   HOME_PROGRAMMING="$HOME/Documents/Programming"
 
-  export GOPATH=/Users/frrakn/selfmade/selfmade-meteor
+  export GOPATH=/Users/frrakn/selfmade/gocode/
   export PATH=/Users/frrakn/.nvm/versions/io.js/v3.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/usr/local/go/bin:/usr/local/sbin:/Users/frrakn/google-cloud-sdk/bin:/usr/local/mysql/bin:/Users/frrakn/devtools/protoc/bin:$GOPATH/bin
   export GOROOT=/usr/local/go
   export NVM_DIR="/Users/frrakn/.nvm"
