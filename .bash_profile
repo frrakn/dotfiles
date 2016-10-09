@@ -4,13 +4,13 @@
 #
 ############################
 
-MACHINE_PROFILE=1
+MACHINE_PROFILE=0
 
 MACHINE_HOME=0
 MACHINE_WORK=1
 MACHINE_EC2=2
 
-
+MACHINE_PROFILE=$MACHINE_HOME
 
 ############################
 #
@@ -73,8 +73,8 @@ fi
 if [ $MACHINE_PROFILE = $MACHINE_HOME ]; then
   HOME_PROGRAMMING="$HOME/Documents/Programming"
 
-  export PATH=/Users/frrakn/.nvm/versions/io.js/v3.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/usr/local/go/bin:/usr/local/sbin
-  export GOPATH=/Users/frrakn/Documents/Programming/gocode
+  export GOPATH=/Users/frrakn/Documents/Programming/gocode:/Users/frrakn/selfmade/selfmade-meteor
+  export PATH=/Users/frrakn/.nvm/versions/io.js/v3.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/usr/local/go/bin:/usr/local/sbin:/Users/frrakn/google-cloud-sdk/bin:/usr/local/mysql/bin:/Users/frrakn/devtools/protoc/bin:$GOPATH/bin
   export GOROOT=/usr/local/go
   export NVM_DIR="/Users/frrakn/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -84,16 +84,30 @@ if [ $MACHINE_PROFILE = $MACHINE_HOME ]; then
   then
     export DISPLAY=:0.0
   fi
+  export KUBERNETES_PROVIDER=aws
 
   alias EC2_CONNECT="ssh -i ~/frraknpub.pem ec2-user@ec2-52-23-8-215.compute-1.amazonaws.com"
+  alias EC22_CONNECT="ssh -i ~/frraknpub.pem ec2-user@ec2-52-201-251-238.compute-1.amazonaws.com"
+  alias TB_CONNECT="ssh -i ~/treebeer.pem ec2-user@ec2-52-207-220-185.compute-1.amazonaws.com"
 
   function EC2_UPLOAD {
     scp -i ~/frraknpub.pem $1 "ec2-user@ec2-52-23-8-215.compute-1.amazonaws.com:~/$2"
   }
 
+  function EC22_UPLOAD {
+    scp -i ~/frraknpub.pem $1 "ec2-user@ec2-52-201-251-238.compute-1.amazonaws.com:~/$2"
+  }
+
   function EC2_DOWNLOAD {
     scp -i ~/frraknpub.pem "ec2-user@ec2-52-23-8-215.compute-1.amazonaws.com:~/$1" .
   }
+
+  function EC22_DOWNLOAD {
+    scp -i ~/frraknpub.pem "ec2-user@ec2-52-201-251-238.compute-1.amazonaws.com:~/$1" .
+  }
+
+  source /Users/frrakn/google-cloud-sdk/completion.bash.inc
+  source /Users/frrakn/google-cloud-sdk/path.bash.inc
 
   function qw {
     case $1 in
@@ -109,6 +123,12 @@ if [ $MACHINE_PROFILE = $MACHINE_HOME ]; then
       'gc')
         cd "$HOME_PROGRAMMING/gocode"
         ;;
+      'hb')
+        cd "$HOME_PROGRAMMING/myhubot"
+        ;;
+      'sm')
+        cd "$HOME_PROGRAMMING/selfmade"
+        ;;
     esac
   }
 fi
@@ -121,5 +141,5 @@ fi
 
 
 if [ $MACHINE_PROFILE = $MACHINE_EC2 ]; then
-	export PATH=$PATH:/usr/local/go/bin
+  export PATH=$PATH:/usr/local/go/bin
 fi
