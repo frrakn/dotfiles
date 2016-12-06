@@ -4,13 +4,14 @@
 #
 ############################
 
-MACHINE_PROFILE=0
+MACHINE_PROFILE=3
 
 MACHINE_HOME=0
 MACHINE_WORK=1
 MACHINE_EC2=2
+MACHINE_HOME_DEBIAN=3
 
-MACHINE_PROFILE=$MACHINE_HOME
+MACHINE_PROFILE=$MACHINE_HOME_DEBIAN
 
 ############################
 #
@@ -22,7 +23,7 @@ alias ls='ls -aG'
 LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
 export LS_COLORS
 
-PS1='\[\e[1;33m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
+PS1="\[\e[1;33m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]"
 alias refresh_bash='source ~/.bash_profile'
 alias mkdirp='mkdir -p'
 alias grep='grep --color=auto'
@@ -106,9 +107,6 @@ if [ $MACHINE_PROFILE = $MACHINE_HOME ]; then
     scp -i ~/frraknpub.pem "ec2-user@ec2-52-201-251-238.compute-1.amazonaws.com:~/$1" .
   }
 
-  source /Users/frrakn/google-cloud-sdk/completion.bash.inc
-  source /Users/frrakn/google-cloud-sdk/path.bash.inc
-
   function qw {
     case $1 in
       'tb')
@@ -142,4 +140,20 @@ fi
 
 if [ $MACHINE_PROFILE = $MACHINE_EC2 ]; then
   export PATH=$PATH:/usr/local/go/bin
+fi
+
+############################
+#
+# DEBIAN MACHINE DEFAULTS
+#
+############################
+
+if [ $MACHINE_PROFILE = $MACHINE_HOME_DEBIAN ]; then
+  export PATH=$PATH/usr/local/bin:/usr/local/sbin
+
+  export PATH=$PATH:$HOME/devtools/bin:$HOME/devtools/protoc/bin
+
+  # NVM
+  export NVM_DIR="/home/frakn/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 fi

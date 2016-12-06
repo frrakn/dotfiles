@@ -19,7 +19,7 @@
 	unstage = reset HEAD
 	out = !git log origin/master..$(git rev-parse --abbrev-ref HEAD)
 	in = !git fetch && git log $(git rev-parse --abbrev-ref HEAD)..origin/master
-	upload = !python ~/alpha/tools/hg/upload.py --send_mail --email fchen@yext.com --cc fido@yext.com
+	upload = !git push --set-upstream origin
 
 	# Show files ignored by git:
 	ign = ls-files -o -i --exclude-standard
@@ -56,3 +56,5 @@
 
 [merge]
     tool = Kaleidoscope
+[credential]
+	helper = cache --timeout=3600000000
