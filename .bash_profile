@@ -9,9 +9,9 @@ MACHINE_PROFILE=3
 MACHINE_HOME=0
 MACHINE_WORK=1
 MACHINE_EC2=2
-MACHINE_HOME_DEBIAN=3
+MACHINE_HOME_UBUNTU=3
 
-MACHINE_PROFILE=$MACHINE_HOME_DEBIAN
+MACHINE_PROFILE=$MACHINE_HOME_UBUNTU
 
 ############################
 #
@@ -44,7 +44,7 @@ function gocheck() {
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
-if [ -f ~/.git-completion.bash ]; then
+if [[ -f ~/.git-completion.bash ]]; then
   . ~/.git-completion.bash
 fi
 
@@ -54,7 +54,7 @@ fi
 #
 ############################
 
-if [ $MACHINE_PROFILE = $MACHINE_WORK ]; then
+if [[ $MACHINE_PROFILE = $MACHINE_WORK ]]; then
   export PATH=/usr/local/bin:/usr/local/go/bin:$PATH:/usr/local/sbin
   export GOROOT=/usr/local/go
   export IMAGES_ORIG=~/selfmade/images/originals
@@ -71,7 +71,7 @@ fi
 #
 ############################
 
-if [ $MACHINE_PROFILE = $MACHINE_HOME ]; then
+if [[ $MACHINE_PROFILE = $MACHINE_HOME ]]; then
   HOME_PROGRAMMING="$HOME/Documents/Programming"
 
   export GOPATH=/Users/frrakn/selfmade/gocode/
@@ -81,7 +81,7 @@ if [ $MACHINE_PROFILE = $MACHINE_HOME ]; then
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
   export TERM="xterm-256color"
   export FONTCONFIG_PATH=/opt/X11/lib/X11/fontconfig
-  if [ -z ${DISPLAY} ]
+  if [[ -z ${DISPLAY} ]]
   then
     export DISPLAY=:0.0
   fi
@@ -138,7 +138,7 @@ fi
 ############################
 
 
-if [ $MACHINE_PROFILE = $MACHINE_EC2 ]; then
+if [[ $MACHINE_PROFILE = $MACHINE_EC2 ]]; then
   export PATH=$PATH:/usr/local/go/bin
 fi
 
@@ -148,12 +148,7 @@ fi
 #
 ############################
 
-if [ $MACHINE_PROFILE = $MACHINE_HOME_DEBIAN ]; then
-  export PATH=$PATH/usr/local/bin:/usr/local/sbin
-
-  export PATH=$PATH:$HOME/devtools/bin:$HOME/devtools/protoc/bin
-
-  # NVM
-  export NVM_DIR="/home/frakn/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+if [[ $MACHINE_PROFILE = $MACHINE_HOME_DEBIAN ]]; then
+  export GEM_HOME=$HOME/.gems
+  export PATH=$PATH:$HOME/.gems/bin
 fi
