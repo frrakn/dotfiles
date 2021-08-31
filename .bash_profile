@@ -4,14 +4,12 @@
 #
 ############################
 
-MACHINE_PROFILE=3
-
 MACHINE_HOME=0
 MACHINE_WORK=1
 MACHINE_EC2=2
 MACHINE_HOME_UBUNTU=3
 
-MACHINE_PROFILE=$MACHINE_HOME_UBUNTU
+MACHINE_PROFILE=$MACHINE_WORK
 
 ############################
 #
@@ -55,14 +53,25 @@ fi
 ############################
 
 if [[ $MACHINE_PROFILE = $MACHINE_WORK ]]; then
-  export PATH=/usr/local/bin:/usr/local/go/bin:$PATH:/usr/local/sbin
+  export PATH=/usr/local/bin:/usr/local/go/bin:$PATH:/usr/local/sbin:$HOME/miniconda3/envs/ctrldev/bin
   export GOROOT=/usr/local/go
-  export IMAGES_ORIG=~/selfmade/images/originals
-  export IMAGES_MOD=~/selfmade/images/modified
 
   alias rgrep='grep -rn --color=auto -I --exclude-dir=.metadata --exclude-dir=build --exclude-dir=bin --exclude-dir=depcache --exclude-dir="apache" --exclude-dir=closure --exclude-dir=flume --exclude-dir="hadoop-0." --exclude-dir="jetty-distribution" --exclude-dir=classes --exclude-dir=".hg" --exclude="*.pyc"'
 
-  alias vim=/usr/local/Cellar/vim/7.4.2235/bin/vim
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$('/Users/cfc/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/Users/cfc/miniconda3/etc/profile.d/conda.sh" ]; then
+          . "/Users/cfc/miniconda3/etc/profile.d/conda.sh"
+      else
+          export PATH="/Users/cfc/miniconda3/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
 fi
 
 ############################
@@ -152,3 +161,22 @@ if [[ $MACHINE_PROFILE = $MACHINE_HOME_DEBIAN ]]; then
   export GEM_HOME=$HOME/.gems
   export PATH=$PATH:$HOME/.gems/bin
 fi
+
+
+# BEGIN: Block added by chef, to set environment strings
+# Please see https://fburl.com/AndroidProvisioning if you do not use bash
+# or if you would rather this bit of code 'live' somewhere else
+. ~/.fbchef/environment
+# END: Block added by chef
+
+# added by setup_fb4a.sh
+export ANDROID_SDK=/opt/android_sdk
+export ANDROID_NDK_REPOSITORY=/opt/android_ndk
+export ANDROID_HOME=${ANDROID_SDK}
+export PATH=${PATH}:${ANDROID_SDK}/emulator:${ANDROID_SDK}/tools:${ANDROID_SDK}/tools/bin:${ANDROID_SDK}/platform-tools
+
+# added by setup_fb4a.sh
+export ANDROID_SDK=/opt/android_sdk
+export ANDROID_NDK_REPOSITORY=/opt/android_ndk
+export ANDROID_HOME=${ANDROID_SDK}
+export PATH=${PATH}:${ANDROID_SDK}/emulator:${ANDROID_SDK}/tools:${ANDROID_SDK}/tools/bin:${ANDROID_SDK}/platform-tools

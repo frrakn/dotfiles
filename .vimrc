@@ -20,6 +20,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'maksimr/vim-jsbeautify'
+Plugin 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 
 
 " All of your Plugins must be added before the following line
